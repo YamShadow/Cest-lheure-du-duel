@@ -10,11 +10,7 @@ const gameReduceurs = (state = [], action) => {
       } else {
         nextState.cardsJoueur2.push(allCards);
       }
-      nextState.board = {
-        joueur1: [],
-        joueur2: [],
-        winner: undefined
-      };
+      nextState.board = { joueur1: [], joueur2: [], winner: undefined };
       return nextState;
 
     case "TIRER_CARD":
@@ -29,6 +25,17 @@ const gameReduceurs = (state = [], action) => {
         nextState.board.joueur1.unshift(nextState.cardsJoueur1.shift());
         nextState.board.joueur2.unshift(nextState.cardsJoueur2.shift());
       }
+      return nextState;
+
+    case "GET_DECK":
+      nextState = { ...state };
+      nextState.deck = action.deck;
+      return nextState;
+
+    case "CUTTING_DECK":
+      nextState = { ...state };
+      nextState.cardsJoueur1 = action.decks.joueur1;
+      nextState.cardsJoueur2 = action.decks.joueur2;
       return nextState;
 
     default:

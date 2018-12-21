@@ -18,7 +18,7 @@ export const bataille = state => ({
 export const cuttingDeckJ1 = url => ({
   type: "CUTTING_DECK",
   decks: {
-    Joueur1: axios
+    joueur1: axios
       .get(url)
       .then(res => {
         return res.data;
@@ -27,7 +27,7 @@ export const cuttingDeckJ1 = url => ({
         console.error("API not call on :" + url);
         return false;
       }),
-    Joueur2: axios
+    joueur2: axios
       .get(url)
       .then(res => {
         return res.data;
@@ -41,7 +41,7 @@ export const cuttingDeckJ1 = url => ({
 
 export const getDeck = url => ({
   type: "GET_DECK",
-  Joueur2: axios
+  deck: axios
     .get(url)
     .then(res => {
       return res.data;
