@@ -6,6 +6,7 @@ class App extends Component {
   game = () => {
     const game = new GameService();
     console.log(game.getState());
+    console.log(game.round());
     // console.log(game);
   };
   render() {

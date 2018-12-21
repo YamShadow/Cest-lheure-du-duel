@@ -27,6 +27,10 @@ export class GameService {
     return this.state;
   };
 
+  getCardsPlayer1 = () => {
+    return this.state.cardsJoueur1;
+  };
+
   //   Setter
 
   //   Methode générique
@@ -57,5 +61,10 @@ export class GameService {
       if (!finish) this.cuttingDeck("cardsJoueur2", true);
       return true;
     });
+  };
+
+  round = () => {
+    console.log(this.state);
+    console.log(this.state.cardsJoueur1);
   };
 }
