@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Game } from "./services/Game";
+import { GameService } from "./services/GameService";
 
 class App extends Component {
+  game = () => {
+    const game = new GameService();
+    console.log(game.getState());
+    // console.log(game);
+  };
   render() {
-    return (
-      <div className="App">
-        <Game />
-      </div>
-    );
+    return <div className="App">{this.game()}</div>;
   }
 }
 
