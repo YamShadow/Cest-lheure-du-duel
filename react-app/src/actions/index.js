@@ -12,7 +12,7 @@ export const bataille = state => ({
   type: "BATAILLE"
 });
 
-export const cuttingDeckJ1 = url => ({
+export const cuttingDeck = url => ({
   type: "CUTTING_DECK",
   decks: {
     joueur1: axios
@@ -38,19 +38,13 @@ export const cuttingDeckJ1 = url => ({
 
 export const getDeck = url => ({
   type: "GET_DECK",
-  deck: new Promise((resolve, reject) => {
-    axios
+  deck: axios
       .get(url)
       .then(res => {
-        resolve(res.data);
+        return res.data;
       })
       .catch(res => {
         console.error("API not call on :" + url);
-        reject(res);
+        return res;
       })
-  })
-  .then(res => {
-    console.log(res);
-    return res;
-  })
-});
+})

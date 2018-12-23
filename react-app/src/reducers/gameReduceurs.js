@@ -40,7 +40,7 @@ const gameReduceurs = (state = initialState, action) => {
 
     case "GET_DECK":
       nextState = { ...state };
-      nextState.deck = action.deck;
+      action.deck.then(res => nextState.deck = res);
       return nextState;
 
     case "CUTTING_DECK":

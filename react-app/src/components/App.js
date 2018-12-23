@@ -7,11 +7,11 @@ import { getDeck } from "../actions/index";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    getDeck('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1');
+    this.props.dispatch(getDeck('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1'));
   }
 
   render() {
-    console.log(this.props.gameReduceurs.deck);
+    console.log(this.props.gameReduceurs);
     return (
       <div>
         <p>TEEEEEEEEEEEEEEST</p>
