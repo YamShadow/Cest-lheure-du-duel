@@ -1,18 +1,15 @@
 import axios from "axios";
 
 export const cleanBord = state => ({
-  type: "CLEAN_BORD",
-  state
+  type: "CLEAN_BORD"
 });
 
 export const tirerCard = state => ({
-  type: "TIRER_CARD",
-  state
+  type: "TIRER_CARD"
 });
 
 export const bataille = state => ({
-  type: "BATAILLE",
-  state
+  type: "BATAILLE"
 });
 
 export const cuttingDeckJ1 = url => ({
@@ -41,13 +38,19 @@ export const cuttingDeckJ1 = url => ({
 
 export const getDeck = url => ({
   type: "GET_DECK",
-  deck: axios
-    .get(url)
-    .then(res => {
-      return res.data;
-    })
-    .catch(res => {
-      console.error("API not call on :" + url);
-      return false;
-    })
+  deck: new Promise((resolve, reject) => {
+    axios
+      .get(url)
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(res => {
+        console.error("API not call on :" + url);
+        reject(res);
+      })
+  })
+  .then(res => {
+    console.log(res);
+    return res;
+  })
 });

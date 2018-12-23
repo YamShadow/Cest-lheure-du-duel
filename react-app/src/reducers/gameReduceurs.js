@@ -1,4 +1,15 @@
-const gameReduceurs = (state = [], action) => {
+const initialState = {
+  tirage: 0,
+  deck: [],
+  cardsJoueur1: [],
+  cardsJoueur2: [],
+  board: {
+    joueur1: [],
+    joueur2: []
+  }
+};
+
+const gameReduceurs = (state = initialState, action) => {
   let nextState;
 
   switch (action.type) {
