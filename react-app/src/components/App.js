@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../actions/index";
 import { getDeck, cuttingDeck } from "../actions/index";
 
-class App extends React.Component {
+class App extends Component {
     constructor(props) {
         super(props);
         this.props.getDeck(

@@ -31,6 +31,7 @@ const gameReduceurs = (state = initialState, action) => {
             nextState = { ...state };
             nextState.board.joueur1.unshift(nextState.cardsJoueur1.shift());
             nextState.board.joueur2.unshift(nextState.cardsJoueur2.shift());
+            ++nextState.tirage;
             return nextState;
 
         case "BATAILLE":
