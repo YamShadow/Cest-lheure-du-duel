@@ -5,7 +5,8 @@ const initialState = {
     cardsJoueur2: [],
     board: {
         joueur1: [],
-        joueur2: []
+        joueur2: [],
+        winner: undefined
     }
 };
 
@@ -20,25 +21,42 @@ const gameReduceurs = (state = initialState, action) => {
                 ...nextState.board.joueur2
             ];
             if (nextState.board.winner === "Joueur1") {
-                nextState.cardsJoueur1.push(allCards);
+                nextState.cardsJoueur1.cards = [
+                    ...nextState.cardsJoueur1.cards,
+                    ...allCards
+                ];
             } else {
-                nextState.cardsJoueur2.push(allCards);
+                nextState.cardsJoueur2.cards = [
+                    ...nextState.cardsJoueur2.cards,
+                    ...allCards
+                ];
             }
-            nextState.board = { joueur1: [], joueur2: [], winner: undefined };
+            nextState.board.joueur1 = [];
+            nextState.board.joueur2 = [];
+            nextState.board.winner = undefined;
             return nextState;
 
         case "TIRER_CARD":
             nextState = { ...state };
-            nextState.board.joueur1.unshift(nextState.cardsJoueur1.shift());
-            nextState.board.joueur2.unshift(nextState.cardsJoueur2.shift());
-            ++nextState.tirage;
+            nextState.board.joueur1.unshift(
+                nextState.cardsJoueur1.cards.shift()
+            );
+            nextState.board.joueur2.unshift(
+                nextState.cardsJoueur2.cards.shift()
+            );
+            nextState.board.winner = action.win;
+            nextState.tirage = nextState.tirage + 1;
             return nextState;
 
         case "BATAILLE":
             nextState = { ...state };
             for (let i = 0; i < 2; i++) {
-                nextState.board.joueur1.unshift(nextState.cardsJoueur1.shift());
-                nextState.board.joueur2.unshift(nextState.cardsJoueur2.shift());
+                nextState.board.joueur1.unshift(
+                    nextState.cardsJoueur1.cards.shift()
+                );
+                nextState.board.joueur2.unshift(
+                    nextState.cardsJoueur2.cards.shift()
+                );
             }
             return nextState;
 

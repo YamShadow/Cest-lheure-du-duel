@@ -4,17 +4,13 @@ export const cleanBord = () => ({
     type: "CLEAN_BORD"
 });
 
-export const tirerCard = () => ({
-    type: "TIRER_CARD"
+export const tirerCard = winner => ({
+    type: "TIRER_CARD",
+    win: winner
 });
 
 export const bataille = () => ({
     type: "BATAILLE"
-});
-
-export const test = () => ({
-    type: "TEST",
-    value: "Je suis bete"
 });
 
 export const cuttingDeck = (url, player) => {

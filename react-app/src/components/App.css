@@ -1,0 +1,84 @@
+#root {
+    position: relative;
+}
+
+.App {
+    text-align: center;
+    margin-top: 200px;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+@keyframes goToRight {
+    from {
+        left: 0;
+    }
+    to {
+        left: 150px;
+    }
+}
+
+@keyframes goToLeft {
+    from {
+        right: 0;
+    }
+    to {
+        right: 150px;
+    }
+}
+
+.launchRightAnimation {
+    animation-name: goToRight;
+    animation-duration: 2s;
+    left: 150px;
+}
+
+.launchLeftAnimation {
+    animation-name: goToLeft;
+    animation-duration: 2s;
+    right: 150px;
+}
+
+.leftCardContainer,
+.rightCardContainer,
+.vs {
+    position: relative;
+    display: inline-block;
+    width: 33.333333%;
+}
+
+.leftCard,
+.rightCard {
+    position: relative;
+}
+
+#validate,
+#texte {
+    display: none;
+}
+
+#overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    bottom: 0;
+    right: 0;
+}
+
+.leftCardContainer {
+    z-index: 1;
+}
+
+.vs p {
+    position: relative;
+    top: -145px;
+    font-size: 50px;
+}
+
+.loserCard {
+    opacity: 0.5;
+}
