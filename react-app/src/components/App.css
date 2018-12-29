@@ -52,21 +52,47 @@
 .leftCard,
 .rightCard {
     position: relative;
+    width: 226px;
+    height: 314px;
 }
 
-#validate,
 #texte {
+    height: 18px;
+}
+
+#validate {
     display: none;
 }
 
 #overlay {
-    background-color: rgba(0, 0, 0, 0.7);
-    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 99;
     bottom: 0;
     right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#overlay > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    width: 80%;
+    transform: translate(-50%, -50%);
+}
+
+#overlay a, #overlay a:visited, #overlay a:focus {
+    color: black;
+    text-decoration: none;
+    background-color: #fff;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .leftCardContainer {

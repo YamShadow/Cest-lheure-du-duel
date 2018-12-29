@@ -11,7 +11,7 @@ import {
 } from "../actions/index";
 
 const BATAILLE =
-    "Il y a eu une bataille. Les cartes ont été sauvegardés (oui, on a la flemme de faire le front :D)";
+    "Il y a eu une bataille. Une carte cachée a été ajoutée à la pile.";
 const WIN_PLAYER_1 = "Le joueur 1 a gagné";
 const WIN_PLAYER_2 = "Le joueur 2 a gagné";
 
@@ -49,24 +49,28 @@ class App extends Component {
             document.getElementById("play").style.display = "inline-block";
             document.getElementsByClassName("vs")[0].style.color = "#000";
             document.getElementById("validate").style.display = "none";
-
-            document
+            document.getElementById("texte").innerText = "";
+console.log(this.props)
+            if (document
+                .getElementsByClassName("launchLeftAnimation").length) document
                 .getElementsByClassName("launchLeftAnimation")[0]
                 .classList.remove("launchLeftAnimation");
-            document
+            if (document
+                .getElementsByClassName("launchRightAnimation").length) document
                 .getElementsByClassName("launchRightAnimation")[0]
                 .classList.remove("launchRightAnimation");
-            document
+            if (document
+                .getElementsByClassName("loserCard").length) document
                 .getElementsByClassName("loserCard")[0]
                 .classList.remove("loserCard");
+
         } else {
             document.getElementById("play").style.display = "none";
             document.getElementsByClassName("vs")[0].style.color = "#fff";
             this.animation();
             document.getElementById("validate").style.display = "inline-block";
             document.getElementById("texte").style.display = "block";
-            document.getElementById("texte").innerText =
-                winner == "Joueur1" ? WIN_PLAYER_1 : WIN_PLAYER_2;
+            document.getElementById("texte").innerText = (winner === "Joueur1" ? WIN_PLAYER_1 : WIN_PLAYER_2) + " cette manche";
         }
     };
 
@@ -80,7 +84,7 @@ class App extends Component {
             this.props.gameReduceurs.cardsJoueur2.cards[0].value
         );
 
-        if (valueCardPlayer1 == valueCardPlayer2) {
+        if (valueCardPlayer1 === valueCardPlayer2) {
             winner = null;
         } else if (valueCardPlayer1 > valueCardPlayer2) {
             winner = "Joueur1";
@@ -150,32 +154,28 @@ class App extends Component {
         return (
             <div className="App">
                 <div className="App">
-                    <div id="overlay">
-                        <p id="gameWinner" />
-                        <p>
-                            <a href="http://localhost:3000">
-                                <button>Recommencer la partie</button>
-                            </a>
-                        </p>
+                    <div id="overlay" style={((this.props.gameReduceurs.cardsJoueur1.cards && !this.props.gameReduceurs.cardsJoueur1.cards.length) || (this.props.gameReduceurs.cardsJoueur2.cards && !this.props.gameReduceurs.cardsJoueur2.cards.length))?
+                    {display: 'block'} : {display: 'none'}}>
+                        <div>
+                            <p id="gameWinner"> 
+                                {this.props.gameReduceurs.board.winner === 'Joueur1'? WIN_PLAYER_1 : WIN_PLAYER_2} la partie.
+                            </p>
+                            <p>
+                                <a href="http://localhost:3000">
+                                    Recommencer la partie
+                                </a>
+                            </p>
+                        </div>
                     </div>
                     <div className="leftCardContainer">
                         <h2>Joueur 1</h2>
                         <img
                             className="leftCard"
                             src={
-                                this.props.gameReduceurs.cardsJoueur1.cards
-                                    ? this.props.gameReduceurs.cardsJoueur1
-                                          .cards[0].image
-                                    : ""
-                            }
+                                this.props.gameReduceurs.cardsJoueur1.cards? this.props.gameReduceurs.cardsJoueur1.cards[0].image: "https://i.skyrock.net/9266/19499266/pics/554752575.jpg"}
                         />
                         <p>
-                            J'ai{" "}
-                            {this.props.gameReduceurs.cardsJoueur1.cards
-                                ? this.props.gameReduceurs.cardsJoueur1.cards
-                                      .length
-                                : "??"}{" "}
-                            cards en mains
+                            {this.props.gameReduceurs.cardsJoueur1.cards? this.props.gameReduceurs.cardsJoueur1.cards.length+" 🃵" : ""}
                         </p>
                     </div>
                     <div className="vs">
@@ -185,20 +185,10 @@ class App extends Component {
                         <h2>Joueur 2</h2>
                         <img
                             className="rightCard"
-                            src={
-                                this.props.gameReduceurs.cardsJoueur2.cards
-                                    ? this.props.gameReduceurs.cardsJoueur2
-                                          .cards[0].image
-                                    : ""
-                            }
+                            src={this.props.gameReduceurs.cardsJoueur2.cards? this.props.gameReduceurs.cardsJoueur2.cards[0].image: "https://i.skyrock.net/9266/19499266/pics/554752575.jpg"}
                         />
                         <p>
-                            J'ai{" "}
-                            {this.props.gameReduceurs.cardsJoueur2.cards
-                                ? this.props.gameReduceurs.cardsJoueur2.cards
-                                      .length
-                                : "??"}{" "}
-                            cards en mains
+                            {this.props.gameReduceurs.cardsJoueur2.cards? this.props.gameReduceurs.cardsJoueur2.cards.length+" 🃵" : ""}
                         </p>
                     </div>
                     <div id="groupButtons">
